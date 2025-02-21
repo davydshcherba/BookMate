@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from .forms import RegisterForm
 from django.contrib import messages
+from .forms import RegisterForm
 
 def register(request):
     if request.method == 'POST':
@@ -24,8 +24,23 @@ def changeusername(request):
             request.user.username = new_username
             request.user.save()
             messages.success(request, "Username changed successfully!")
-            return redirect("home")  # або залишити на тій же сторінці `changeusername`
+            return redirect("home")
         else:
             messages.error(request, "Please enter a valid username.")
 
     return render(request, 'users/changeUsername.html')
+
+
+@login_required
+def changeemail(request):
+    if request.method == "POST":
+        new_email = request.POST.get("email")
+        if new_email:
+            request.user.email = new_email
+            request.user.save()
+            messages.success(request, "Email changed successfully!")
+            return redirect("home")
+        else:
+            messages.error(request, "Please enter a valid email address.")
+
+    return render(request, 'users/changeEmail.html')
