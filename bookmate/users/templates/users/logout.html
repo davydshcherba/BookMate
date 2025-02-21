@@ -8,6 +8,7 @@
   </head>
   <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     <div class="p-8">
+      {% csrf_token %}
       <h2 class="text-2xl font-bold">Log Out</h2>
       <p class="mt-4">You Log Out from your account</p>
       <a href="{% url 'login' %}" class="text-blue-500 hover:underline mt-4 inline-block">
