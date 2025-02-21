@@ -5,18 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      };
+    </script>
+    <style>
+      input {
+        color: black;
+        background-color: white;
+      }
+      .dark input {
+        color: black !important;
+        background-color: white !important;
+      }
+    </style>
   </head>
   <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 w-96">
       <h2 class="text-2xl font-bold text-center mb-4">Log in</h2>
       <form method="POST" class="space-y-4">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div>
+          <label for="username" class="text-gray-900 dark:text-white">Username</label>
+          <input id="username" name="username" type="text" class="w-full border rounded-lg px-3 py-2 mt-1" required />
+        </div>
+        <div>
+          <label for="password" class="text-gray-900 dark:text-white">Password</label>
+          <input id="password" name="password" type="password" class="w-full border rounded-lg px-3 py-2 mt-1" required />
+        </div>
         <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
           Log in
         </button>
       </form>
-      <p class="text-center mt-4 text-gray-600 dark:text-gray-300">Haven`t got an account? 
+      <p class="text-center mt-4 text-gray-600 dark:text-gray-300">Haven't got an account? 
         <a href="{% url 'register' %}" class="text-blue-500 hover:underline">Register</a>
       </p>
     </div>
