@@ -6,7 +6,31 @@
     <title>{% block title %}{% endblock title %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex justify-center items-center min-h-screen">
+  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 ">
+    <header class="w-full py-6 bg-gradient-to-r from-indigo-500 to-purple-700 text-white text-center shadow-md flex justify-between items-center px-10">
+      <h1 class="text-4xl font-extrabold drop-shadow-lg">Welcome to BookMate</h1>
+      <nav>
+        <ul class="flex space-x-6">
+          <li>
+            <a href="{% url 'home' %}" class="text-white font-semibold hover:underline">Home</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'profile' %}" class="text-white font-semibold hover:underline">Profile</a>
+          </li>
+          <li>
+            <form action="{% url 'logout' %}" method="post" class="inline">
+              {% csrf_token %}
+              <button type="submit" class="text-white font-semibold hover:underline">Logout</button>
+            </form>
+          </li>
+          {% endif %}
+          <li>
+            <a target="_blank" href="https://send.monobank.ua/jar/28Dvp3iNWi" class="text-yellow-300 font-semibold hover:underline">Support Me</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
     {% block content %}{% endblock content %}
   </body>
 </html>
