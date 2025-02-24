@@ -2,8 +2,6 @@
 {% block title %}Home Page{% endblock title %}
 
 {% block content %}
-
-
 <main>
   <section class="w-full bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 text-center">
     {% if user.is_authenticated %}
@@ -20,8 +18,24 @@
       </div>
     {% endif %}
   </section>
-  <section class="w-full bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 text-center mt-8">
-    <a href=""></a>
-  </section>
+
+  {% if user.is_authenticated %}
+    <section class="w-full bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 text-center mt-8">
+      {% if books %}
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Your Books</h2>
+        <ul class="space-y-4">
+          {% for book in books %}
+            <li class="p-4 border border-gray-300 dark:border-gray-700 rounded-xl">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ book.title }}</h3>
+              <p class="text-gray-700 dark:text-gray-300">Pages: {{ book.pages }}</p>
+              <p class="text-gray-700 dark:text-gray-300">Current Page: {{ book.page_now }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-gray-700 dark:text-gray-300">You haven't got any books.</p>
+      {% endif %}
+    </section>
+  {% endif %}
 </main>
 {% endblock content %}
