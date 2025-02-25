@@ -1,0 +1,30 @@
+{% extends "main/layout.html" %}
+{% block title %}Add Bookmark{% endblock title %}
+
+{% block content %}
+<div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 max-w-lg mx-auto">
+  <h2 class="text-2xl font-bold text-center mb-4">Add Bookmark</h2>
+  <form method="POST" class="space-y-4">
+    {% csrf_token %}
+    <div>
+      <label class="text-gray-900 dark:text-white">Select Book</label>
+      <select name="book" class="w-full border rounded-lg px-3 py-2 mt-1" required>
+        {% for book in books %}
+          <option value="{{ book.id }}">{{ book.title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label class="text-gray-900 dark:text-white">Title</label>
+      <input name="title" type="text" class="w-full border rounded-lg px-3 py-2 mt-1" required />
+    </div>
+    <div>
+      <label class="text-gray-900 dark:text-white">Bookmark Content</label>
+      <textarea name="bookmark" class="w-full border rounded-lg px-3 py-2 mt-1" required></textarea>
+    </div>
+    <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
+      Add Bookmark
+    </button>
+  </form>
+</div>
+{% endblock content %}
