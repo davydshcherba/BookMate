@@ -26,7 +26,9 @@
         <ul class="space-y-4">
           {% for book in books %}
             <li class="p-4 border border-gray-300 dark:border-gray-700 rounded-xl">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ book.title }}</h3>
+              <a href="{% url 'book_detail' book.id %}" class="text-lg font-semibold text-blue-500 hover:underline">
+                {{ book.title }}
+              </a>
               <p class="text-gray-700 dark:text-gray-300">Pages: {{ book.pages }}</p>
               <p class="text-gray-700 dark:text-gray-300">Current Page: {{ book.page_now }}</p>
             </li>

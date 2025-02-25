@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .models import Book
 
 def home(request):
@@ -7,3 +7,6 @@ def home(request):
 
 def profile(request):
     return render(request, 'main/profile.html')
+def book_detail(request, book_id):
+    book = get_object_or_404(Book, id=book_id,user=request.user)
+    return render(request, 'main/book_detail.html', {"book": book})

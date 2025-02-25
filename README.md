@@ -33,3 +33,8 @@ Once the server is running successfully, you can access the application in your 
 
 Enjoy using Bookmate!
 
+## Contacts
+
+- **Name:** David Shcherba  
+- **Phone:** +380684508698
+
