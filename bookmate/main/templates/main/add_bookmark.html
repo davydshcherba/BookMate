@@ -8,7 +8,7 @@
     {% csrf_token %}
     <div>
       <label class="text-gray-900 dark:text-white">Select Book</label>
-      <select name="book" class="w-full border rounded-lg px-3 py-2 mt-1" required>
+      <select name="book" class="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900 dark:text-dark" required>
         {% for book in books %}
           <option value="{{ book.id }}">{{ book.title }}</option>
         {% endfor %}
@@ -16,11 +16,11 @@
     </div>
     <div>
       <label class="text-gray-900 dark:text-white">Title</label>
-      <input name="title" type="text" class="w-full border rounded-lg px-3 py-2 mt-1" required />
+      <input name="title" type="text" class="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900 dark:text-dark" required />
     </div>
     <div>
       <label class="text-gray-900 dark:text-white">Bookmark Content</label>
-      <textarea name="bookmark" class="w-full border rounded-lg px-3 py-2 mt-1" required></textarea>
+      <textarea name="bookmark" class="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900 dark:text-dark" required></textarea>
     </div>
     <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
       Add Bookmark

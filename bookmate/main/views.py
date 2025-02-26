@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import F  # Імпортуємо F для порівняння полів у БД
+from django.db.models import F 
 from .models import Book, Bookmark
 
 def home(request):

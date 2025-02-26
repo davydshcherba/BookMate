@@ -8,15 +8,15 @@
     {% csrf_token %}
     <div>
       <label class="text-gray-900 dark:text-white">Book Title</label>
-      <input name="title" type="text" class="w-full border rounded-lg px-3 py-2 mt-1" required />
+      <input name="title" type="text" class="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900 dark:text-dark" required />
     </div>
     <div>
       <label class="text-gray-900 dark:text-white">Total Pages</label>
-      <input name="pages" type="number" class="w-full border rounded-lg px-3 py-2 mt-1" required />
+      <input name="pages" type="number" class="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900 dark:text-dark" required />
     </div>
     <div>
       <label class="text-gray-900 dark:text-white">Current Page</label>
-      <input name="page_now" type="number" class="w-full border rounded-lg px-3 py-2 mt-1" required />
+      <input name="page_now" type="number" class="w-full border rounded-lg px-3 py-2 mt-1 text-gray-900 text-gray-900 dark:text-dark" required />
     </div>
     <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
       Add Book

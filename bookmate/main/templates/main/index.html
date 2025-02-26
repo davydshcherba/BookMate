@@ -39,12 +39,14 @@
     </h2>
     <a
       href="{% url 'add_book' %}"
-      class="bg-blue-500 hover:bg-blue-600 py-2 px-5 rounded-xl "
+      class="bg-blue-500 hover:bg-blue-600 py-2 px-5 rounded-xl"
       >Add book</a
     >
     <ul class="space-y-4">
       {% for book in books %}
-      <li class="p-4 border border-gray-300 dark:border-gray-700 rounded-xl mt-4">
+      <li
+        class="p-4 border border-gray-300 dark:border-gray-700 rounded-xl mt-4"
+      >
         <a
           href="{% url 'book_detail' book.id %}"
           class="text-lg font-semibold text-blue-500 hover:underline"
@@ -60,6 +62,12 @@
     </ul>
     {% else %}
     <p class="text-gray-700 dark:text-gray-300">You haven't got any books.</p>
+    <br>
+    <a
+    href="{% url 'add_book' %}"
+    class="bg-blue-500 hover:bg-blue-600 py-2 px-5 rounded-xl"
+    >Add book</a
+  > 
     {% endif %}
   </section>
   {% endif %}
