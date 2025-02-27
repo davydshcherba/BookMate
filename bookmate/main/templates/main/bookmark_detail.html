@@ -1,0 +1,16 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Bookmark Detail - {{ bookmark.title|default:"Untitled" }}{% endblock %}
+
+{% block content %}
+<main>
+  <section class="w-full bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 text-center mt-8">
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white whitespace-nowrap overflow-hidden text-ellipsis block">
+      {{ bookmark.title|default:"No Title" }}
+    </h3>
+    <p class="text-gray-700 dark:text-gray-300 mt-4 whitespace-pre-wrap break-words">
+      {{ bookmark.bookmark|default:"No content available." }}
+    </p>
+  </section>
+</main>
+{% endblock %}

@@ -5,32 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock title %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+      .header-gradient {
+        background: linear-gradient(135deg, #6d28d9, #4c1d95);
+      }
+      .hover-scale {
+        transition: transform 0.2s ease-in-out;
+      }
+      .hover-scale:hover {
+        transform: scale(1.05);
+      }
+    </style>
   </head>
-  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 ">
-    <header class="w-full py-6 bg-gradient-to-r from-indigo-500 to-purple-700 text-white text-center shadow-md flex justify-between items-center px-10">
-      <h1 class="text-4xl font-extrabold drop-shadow-lg">Welcome to BookMate</h1>
-      <nav>
-        <ul class="flex space-x-6">
-          <li>
-            <a href="{% url 'home' %}" class="text-white font-semibold hover:underline">Home</a>
-          </li>
-          {% if user.is_authenticated %}
-          <li>
-            <a href="{% url 'profile' %}" class="text-white font-semibold hover:underline">Profile</a>
-          </li>
-          <li>
-            <form action="{% url 'logout' %}" method="post" class="inline">
-              {% csrf_token %}
-              <button type="submit" class="text-white font-semibold hover:underline">Logout</button>
-            </form>
-          </li>
-          {% endif %}
-          <li>
-            <a target="_blank" href="https://send.monobank.ua/jar/28Dvp3iNWi" class="text-yellow-300 font-semibold hover:underline">Support Me</a>
-          </li>
-        </ul>
-      </nav>
+  <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <header class="w-full py-6 header-gradient text-white shadow-lg">
+      <div class="container mx-auto px-6 flex justify-between items-center">
+        <h1 class="text-4xl font-bold drop-shadow-md">
+          <a href="{% url 'home' %}" class="hover:text-gray-200 transition-colors">BookMate</a>
+        </h1>
+        <nav>
+          <ul class="flex space-x-8">
+            <li>
+              <a href="{% url 'home' %}" class="text-lg font-semibold hover:text-gray-200 transition-colors">Home</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'profile' %}" class="text-lg font-semibold hover:text-gray-200 transition-colors">Profile</a>
+            </li>
+            <li>
+              <form action="{% url 'logout' %}" method="post" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="text-lg font-semibold hover:text-gray-200 transition-colors">Logout</button>
+              </form>
+            </li>
+            {% endif %}
+            <li>
+              <a target="_blank" href="https://send.monobank.ua/jar/28Dvp3iNWi" class="text-lg font-semibold text-yellow-300 hover:text-yellow-400 transition-colors">Support Me</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
-    {% block content %}{% endblock content %}
+
+    <main class="container mx-auto px-6 py-8">
+      {% block content %}{% endblock content %}
+    </main>
+
+    <footer class="w-full py-6 bg-gray-800 text-white text-center mt-12">
+      <p class="text-lg">© 2025 BookMate. All rights reserved.</p>
+    </footer>
   </body>
 </html>

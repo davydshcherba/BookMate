@@ -1,26 +1,34 @@
 {% extends "main/layout.html" %} {% block title %}Profile{% endblock title %}
 {% block content %}
-<div
-  class="text-center p-8 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md"
->
-  <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-    Username: {{ user.username }}
+<div class="max-w-2xl mx-auto p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+  <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+    Profile Settings
   </h2>
-  <a
-    href="{% url 'changeusername' %}"
-    class="inline-block px-4 py-2 bg-red-700 text-white font-bold rounded-md transition-transform transform hover:bg-red-800 hover:scale-105 active:bg-red-900 active:scale-95 "
-  >
-    Change username
-  </a>
 
-  <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-5 mb-4">
-    Email: {{ user.email }}
-  </h2>
-  <a
-    href="{% url 'changeemail' %}"
-    class="inline-block px-4 py-2 bg-red-700 text-white font-bold rounded-md transition-transform transform hover:bg-red-800 hover:scale-105 active:bg-red-900 active:scale-95"
-  >
-    Change email
-  </a>
+  <!-- Username Section -->
+  <div class="mb-8">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
+      Username: <span class="text-purple-600">{{ user.username }}</span>
+    </h3>
+    <a
+      href="{% url 'changeusername' %}"
+      class="inline-block px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-lg shadow-md hover:from-red-700 hover:to-red-800 hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+    >
+      Change Username
+    </a>
+  </div>
+
+  <!-- Email Section -->
+  <div class="mb-8">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
+      Email: <span class="text-purple-600">{{ user.email }}</span>
+    </h3>
+    <a
+      href="{% url 'changeemail' %}"
+      class="inline-block px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-lg shadow-md hover:from-red-700 hover:to-red-800 hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+    >
+      Change Email
+    </a>
+  </div>
 </div>
 {% endblock content %}

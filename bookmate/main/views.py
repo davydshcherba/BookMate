@@ -17,19 +17,20 @@ def book_detail(request, book_id):
     book = get_object_or_404(Book, id=book_id, user=request.user)
     return render(request, "main/book_detail.html", {"book": book})
 
+def bookmark_detail(request, bookmark_id):
+    bookmark = get_object_or_404(Bookmark, id=bookmark_id, book__user=request.user) 
+    return render(request, "main/bookmark_detail.html", {"bookmark": bookmark})
+
 def add_bookmark(request):
+    book_id = request.GET.get("book") or request.POST.get("book")
     if request.method == "POST":
-        book_id = request.POST.get("book")
         title = request.POST.get("title")
         content = request.POST.get("bookmark")
-
         book = get_object_or_404(Book, id=book_id, user=request.user)
         Bookmark.objects.create(book=book, title=title, bookmark=content)
-
-        return redirect("book_detail", book_id=book.id) 
-
+        return redirect("book_detail", book_id=book.id)
     books = Book.objects.filter(user=request.user)
-    return render(request, "main/add_bookmark.html", {"books": books})
+    return render(request, "main/add_bookmark.html", {"books": books, "selected_book": book_id})
 
 def add_book(request):
     if request.method == "POST":

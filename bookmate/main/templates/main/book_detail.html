@@ -1,31 +1,49 @@
 {% extends "main/layout.html" %}
-{% block title %}{{ book.title }}{% endblock title %}
+
+{% block title %}Book Detail - {{ book.title }}{% endblock %}
 
 {% block content %}
-<main>
-  <section class="w-full bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 text-center">
-    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ book.title }}</h1>
-    <p class="text-gray-700 dark:text-gray-300">Pages: {{ book.pages }}</p>
-    <p class="text-gray-700 dark:text-gray-300">Current Page: {{ book.page_now }}</p>
-    <a href="{% url 'add_bookmark' %}" class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+<main class="container mx-auto px-4 py-8">
+  <!-- Book Details Section -->
+  <section class="w-full bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 text-center transform transition-all duration-300 hover:shadow-3xl">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 whitespace-nowrap overflow-hidden text-ellipsis block">
+      {{ book.title }}
+    </h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-2">
+      Pages: <span class="font-semibold">{{ book.pages }}</span>
+    </p>
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+      Current Page: <span class="font-semibold">{{ book.page_now }}</span>
+    </p>
+    <a
+      href="{% url 'add_bookmark' %}"
+      class="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl font-semibold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105"
+    >
       Add Bookmark
     </a>
   </section>
 
-  <section class="w-full bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 text-center mt-8">
+  <!-- Bookmarks Section -->
+  <section class="w-full bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 text-center mt-8 transform transition-all duration-300 hover:shadow-3xl">
     {% if book.bookmarks.all %}
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Bookmarks</h2>
-      <ul class="space-y-4">
-        {% for bookmark in book.bookmarks.all %}
-          <li class="p-4 border border-gray-300 dark:border-gray-700 rounded-xl">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ bookmark.title }}</h3>
-            <p class="text-gray-700 dark:text-gray-300">{{ bookmark.bookmark }}</p>
-          </li>
-        {% endfor %}
-      </ul>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+      Bookmarks
+    </h2>
+    <ul class="space-y-6">
+      {% for bookmark in book.bookmarks.all %}
+      <li class="p-6 border border-gray-300 dark:border-gray-700 rounded-2xl hover:shadow-lg transition-shadow">
+        <a
+          href="{% url 'bookmark_detail' bookmark.id %}"
+          class="text-xl font-semibold text-blue-500 hover:text-blue-600 hover:underline whitespace-nowrap overflow-hidden text-ellipsis block"
+        >
+          {{ bookmark.title }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
     {% else %}
-      <p class="text-gray-700 dark:text-gray-300">No bookmarks yet.</p>
+    <p class="text-lg text-gray-700 dark:text-gray-300">No bookmarks yet.</p>
     {% endif %}
   </section>
 </main>
-{% endblock content %}
+{% endblock %}
